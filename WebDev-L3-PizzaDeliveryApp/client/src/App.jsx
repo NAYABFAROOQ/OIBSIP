@@ -123,6 +123,18 @@ export default function App() {
   // Delivery Address
   const [delivery, setDelivery] = useState({ street: 'Gulshan Colony, Paris Road', city: 'Sialkot', phone: '+92 300 1234567' });
 
+  // Oasis Infobyte Mandatory Video Title Card State
+  const [showTitleCard, setShowTitleCard] = useState(false);
+
+  useEffect(() => {
+    if (showTitleCard) {
+      const timer = setTimeout(() => {
+        setShowTitleCard(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showTitleCard]);
+
   // Initial Data Fetch
   useEffect(() => {
     if (token) {
@@ -498,6 +510,14 @@ export default function App() {
         <div className="evaluator-banner-right">
           <button
             type="button"
+            className="evaluator-btn titlecard-trigger-btn"
+            onClick={() => setShowTitleCard(true)}
+            title="Display mandatory 2-second Oasis Infobyte Title Card for video recording"
+          >
+            🎬 2s Video Title Card
+          </button>
+          <button
+            type="button"
             className={`evaluator-btn ${user?.role !== 'admin' ? 'active' : ''}`}
             onClick={switchToCustomerMode}
           >
@@ -513,6 +533,50 @@ export default function App() {
           </button>
         </div>
       </div>
+
+      {/* Oasis Infobyte Mandatory 2-Second Title Card Overlay */}
+      {showTitleCard && (
+        <div className="titlecard-overlay">
+          <div className="titlecard-card">
+            <div className="titlecard-badge">OASIS INFOBYTE INTERNSHIP (OIBSIP)</div>
+            <div className="titlecard-track">DOMAIN: WEB DEVELOPMENT &amp; DESIGNING</div>
+
+            <div className="titlecard-divider" />
+
+            <h1 className="titlecard-project">Nayab's Pizzeria</h1>
+            <h2 className="titlecard-task">Task: Level 3 — Pizza Delivery Web Application</h2>
+
+            <div className="titlecard-details">
+              <div className="titlecard-detail-item">
+                <span className="titlecard-label">CANDIDATE NAME</span>
+                <span className="titlecard-val">Nayab Farooq</span>
+              </div>
+              <div className="titlecard-detail-item">
+                <span className="titlecard-label">ORGANIZATION</span>
+                <span className="titlecard-val">Oasis Infobyte (OIBSIP)</span>
+              </div>
+              <div className="titlecard-detail-item">
+                <span className="titlecard-label">ARCHITECTURE</span>
+                <span className="titlecard-val">MERN Full-Stack + Three.js</span>
+              </div>
+            </div>
+
+            <div className="titlecard-progress-wrap">
+              <div className="titlecard-progress-fill" />
+            </div>
+            <div className="titlecard-timer-sub">
+              <span>⏱️ Mandatory 2-second evaluation title card...</span>
+              <button
+                type="button"
+                className="titlecard-skip-btn"
+                onClick={() => setShowTitleCard(false)}
+              >
+                Proceed to Demo ➔
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Frosted Glass Navbar */}
       <header className="navbar">
