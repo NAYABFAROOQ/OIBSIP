@@ -1,4 +1,11 @@
 {
+  "name": "oibsip-pizza-delivery",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix WebDev-L3-PizzaDeliveryApp/client run build",
+    "client": "npm --prefix WebDev-L3-PizzaDeliveryApp/client run dev",
+    "server": "node WebDev-L3-PizzaDeliveryApp/server/server.js"
+  },
   "dependencies": {
     "axios": "^1.20.0",
     "lucide-react": "^1.49.0"
