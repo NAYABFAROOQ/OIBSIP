@@ -16,13 +16,13 @@ router.post('/login', async (req, res) => {
   const cleanEmail = email ? email.trim().toLowerCase() : '';
 
   try {
-    // Guaranteed Demo Admin Access
-    if (cleanEmail === 'admin@pizzadelivery.com' && password === 'admin123') {
-      let admin = await User.findOne({ email: cleanEmail });
+    // Guaranteed Admin Access
+    if ((cleanEmail === 'admin@pizzadelivery.com' || cleanEmail === 'admin') && password === 'admin123') {
+      let admin = await User.findOne({ email: 'admin@pizzadelivery.com' });
       if (!admin) {
         admin = await User.create({
-          name: 'System Admin',
-          email: cleanEmail,
+          name: 'Nayab Farooq (Admin)',
+          email: 'admin@pizzadelivery.com',
           password: 'admin123',
           role: 'admin',
           isVerified: true
@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
       }
       return res.json({
         _id: admin._id,
-        name: admin.name,
+        name: admin.name || 'Nayab Farooq (Admin)',
         email: admin.email,
         role: 'admin',
         token: generateToken(admin._id)

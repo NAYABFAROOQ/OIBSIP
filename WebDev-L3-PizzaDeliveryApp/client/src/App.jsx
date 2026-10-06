@@ -131,7 +131,7 @@ export default function App() {
     if (showTitleCard) {
       const timer = setTimeout(() => {
         setShowTitleCard(false);
-      }, 3000);
+      }, 4000); // 4 seconds duration
       return () => clearTimeout(timer);
     }
   }, [showTitleCard]);
@@ -504,7 +504,7 @@ export default function App() {
               <div className="titlecard-progress-fill" />
             </div>
             <div className="titlecard-timer-sub">
-              <span>⏱️ Mandatory 2-second evaluation title card...</span>
+              <span>⏱️ 4-second evaluation title card (auto-transitioning)...</span>
               <button
                 type="button"
                 className="titlecard-skip-btn"
@@ -612,6 +612,19 @@ export default function App() {
               }}
             >
               Cart <span className="badge">{cart.length}</span>
+            </button>
+
+            {/* 4-Second Video Title Card Trigger on Top */}
+            <button
+              type="button"
+              className="nav-btn titlecard-nav-btn"
+              onClick={() => {
+                setShowTitleCard(true);
+                setMobileMenuOpen(false);
+              }}
+              title="Play 4-second Oasis Infobyte Title Card for submission video recording"
+            >
+              🎬 4s Video Title
             </button>
 
             {/* Admin Panel Tab — STRICTLY ONLY visible if verified admin is logged in */}
