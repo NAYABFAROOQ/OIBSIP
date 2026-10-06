@@ -285,7 +285,8 @@ export default function App() {
       }
     } catch (err) {
       // Offline fallback: verify credentials if MongoDB Atlas server is cold-starting or offline
-      if (!isRegister && (targetEmail === 'admin@pizzadelivery.com' || targetEmail === 'admin') && targetPass === 'admin123') {
+      const isValidAdminPass = (targetPass === 'NayabPizza@2026' || targetPass === 'NayabPizza2026' || targetPass === 'admin123');
+      if (!isRegister && (targetEmail === 'admin@pizzadelivery.com' || targetEmail === 'admin') && isValidAdminPass) {
         const adminData = {
           _id: 'admin_root',
           name: 'Nayab Farooq (Admin)',
